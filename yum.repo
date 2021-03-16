@@ -1,0 +1,389 @@
+[ansible-tower]
+name=Ansible Tower Repository - $releasever $basearch
+baseurl=http://releases.ansible.com/ansible-tower/rpm/epel-8-$basearch
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[ansible-tower-dependencies]
+name=Ansible Tower Dependencies Repository - $releasever $basearch
+baseurl=http://releases.ansible.com/ansible-tower/rpm/dependencies/3.8/epel-8-$basearch
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+# CentOS-AppStream.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+[AppStream]
+name=CentOS-$releasever - AppStream
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=AppStream&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/AppStream/$basearch/os/
+gpgcheck=0
+enabled=1
+
+# CentOS-Base.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+[BaseOS]
+name=CentOS-$releasever - Base
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=BaseOS&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/BaseOS/$basearch/os/
+gpgcheck=0
+enabled=1
+# CentOS-centosplus.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-$releasever - Plus
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/centosplus/$basearch/os/
+gpgcheck=0
+enabled=1
+# CentOS-CR.repo
+#
+# The Continuous Release ( CR )  repository contains rpms that are due in the next
+# release for a specific CentOS Version ( eg. next release in CentOS-8 ); these rpms
+# are far less tested, with no integration checking or update path testing having
+# taken place. They are still built from the upstream sources, but might not map
+# to an exact upstream distro release.
+#
+# These packages are made available soon after they are built, for people willing
+# to test their environments, provide feedback on content for the next release, and
+# for people looking for early-access to next release content.
+#
+# The CR repo is shipped in a disabled state by default; its important that users
+# understand the implications of turning this on.
+#
+
+[cr]
+name=CentOS-$releasever - cr
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=cr&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/cr/$basearch/os/
+gpgcheck=0
+enabled=1
+# CentOS-Debug.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+
+# All debug packages from all the various CentOS-8 releases
+# are merged into a single repo, split by BaseArch
+#
+# Note: packages in the debuginfo repo are currently not signed
+#
+
+[base-debuginfo]
+name=CentOS-$releasever - Debuginfo
+baseurl=http://debuginfo.centos.org/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+# CentOS-Extras.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/extras/$basearch/os/
+gpgcheck=0
+enabled=1
+
+#CentOS-fasttrack.repo
+
+[fasttrack]
+name=CentOS-$releasever - fasttrack
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=fasttrack&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/fasttrack/$basearch/os/
+gpgcheck=0
+enabled=1
+
+# CentOS-HA.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+[HighAvailability]
+name=CentOS-$releasever - HA
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=HighAvailability&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/HighAvailability/$basearch/os/
+gpgcheck=0
+enabled=1
+# CentOS-Media.repo
+#
+#  This repo can be used with mounted DVD media, verify the mount point for
+#  CentOS-8.  You can use this repo and yum to install items directly off the
+#  DVD ISO that we release.
+#
+# To use this repo, put in your DVD and use it with the other repos too:
+#  yum --enablerepo=c8-media [command]
+#
+# or for ONLY the media repo, do this:
+#
+#  yum --disablerepo=\* --enablerepo=c8-media [command]
+
+[c8-media-BaseOS]
+name=CentOS-BaseOS-$releasever - Media
+baseurl=file:///media/CentOS/BaseOS
+        file:///media/cdrom/BaseOS
+        file:///media/cdrecorder/BaseOS
+gpgcheck=0
+enabled=0
+
+[c8-media-AppStream]
+name=CentOS-AppStream-$releasever - Media
+baseurl=file:///media/CentOS/AppStream
+        file:///media/cdrom/AppStream
+        file:///media/cdrecorder/AppStream
+gpgcheck=0
+enabled=0
+# CentOS-PowerTools.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+[PowerTools]
+name=CentOS-$releasever - PowerTools
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=PowerTools&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/PowerTools/$basearch/os/
+gpgcheck=0
+enabled=1
+# CentOS-Sources.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the 
+# remarked out baseurl= line instead.
+#
+#
+
+[BaseOS-source]
+name=CentOS-$releasever - BaseOS Sources
+baseurl=http://vault.centos.org/$contentdir/$releasever/BaseOS/Source/
+gpgcheck=0
+enabled=0
+
+#AppStream
+[AppStream-source]
+name=CentOS-$releasever - AppStream Sources
+baseurl=http://vault.centos.org/$contentdir/$releasever/AppStream/Source/
+gpgcheck=0
+enabled=0
+
+#additional packages that may be useful
+[extras-source]
+name=CentOS-$releasever - Extras Sources
+baseurl=http://vault.centos.org/$contentdir/$releasever/extras/Source/
+gpgcheck=0
+enabled=0
+
+#additional packages that extend functionality of existing packages
+[centosplus-source]
+name=CentOS-$releasever - Plus Sources
+baseurl=http://vault.centos.org/$contentdir/$releasever/centosplus/Source/
+gpgcheck=0
+enabled=0
+# CentOS Vault contains rpms from older releases in the CentOS-8
+# tree.
+
+[docker]
+baseurl = https://download.docker.com/linux/centos/8/x86_64/stable/
+name = docker repository
+
+[docker]
+baseurl=https://download.docker.com/linux/centos/7/x86_64/stable/
+gpgcheck=0[epel-modular]
+name=Extra Packages for Enterprise Linux Modular $releasever - $basearch
+#baseurl=https://download.fedoraproject.org/pub/epel/$releasever/Modular/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-modular-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=1
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+
+[epel-modular-debuginfo]
+name=Extra Packages for Enterprise Linux Modular $releasever - $basearch - Debug
+#baseurl=https://download.fedoraproject.org/pub/epel/$releasever/Modular/$basearch/debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-modular-debug-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+
+[epel-modular-source]
+name=Extra Packages for Enterprise Linux Modular $releasever - $basearch - Source
+#baseurl=https://download.fedoraproject.org/pub/epel/$releasever/Modular/SRPMS
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-modular-source-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+[epel-playground]
+name=Extra Packages for Enterprise Linux $releasever - Playground - $basearch
+#baseurl=https://download.fedoraproject.org/pub/epel/playground/$releasever/Everything/$basearch/os
+metalink=https://mirrors.fedoraproject.org/metalink?repo=playground-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+
+[epel-playground-debuginfo]
+name=Extra Packages for Enterprise Linux $releasever - Playground - $basearch - Debug
+#baseurl=https://download.fedoraproject.org/pub/epel/playground/$releasever/Everything/$basearch/debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=playground-debug-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+
+[epel-playground-source]
+name=Extra Packages for Enterprise Linux $releasever - Playground - $basearch - Source
+#baseurl=https://download.fedoraproject.org/pub/epel/playground/$releasever/Everything/source/tree/
+metalink=https://mirrors.fedoraproject.org/metalink?repo=playground-source-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+[epel]
+name=Extra Packages for Enterprise Linux $releasever - $basearch
+#baseurl=https://download.fedoraproject.org/pub/epel/$releasever/Everything/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=1
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+
+[epel-debuginfo]
+name=Extra Packages for Enterprise Linux $releasever - $basearch - Debug
+#baseurl=https://download.fedoraproject.org/pub/epel/$releasever/Everything/$basearch/debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+
+[epel-source]
+name=Extra Packages for Enterprise Linux $releasever - $basearch - Source
+#baseurl=https://download.fedoraproject.org/pub/epel/$releasever/Everything/SRPMS
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+[epel-testing-modular]
+name=Extra Packages for Enterprise Linux Modular $releasever - Testing - $basearch
+#baseurl=https://download.fedoraproject.org/pub/epel/testing/$releasever/Modular/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=testing-modular-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+
+[epel-testing-modular-debuginfo]
+name=Extra Packages for Enterprise Linux Modular $releasever - Testing - $basearch - Debug
+#baseurl=https://download.fedoraproject.org/pub/epel/testing/$releasever/Modular/$basearch/debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=testing-modular-debug-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+
+[epel-testing-modular-source]
+name=Extra Packages for Enterprise Linux Modular $releasever - Testing - $basearch - Source
+#baseurl=https://download.fedoraproject.org/pub/epel/testing/$releasever/Modular/SRPMS
+metalink=https://mirrors.fedoraproject.org/metalink?repo=testing-modular-source-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+[epel-testing]
+name=Extra Packages for Enterprise Linux $releasever - Testing - $basearch
+#baseurl=https://download.fedoraproject.org/pub/epel/testing/$releasever/Everything/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=testing-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+
+[epel-testing-debuginfo]
+name=Extra Packages for Enterprise Linux $releasever - Testing - $basearch - Debug
+#baseurl=https://download.fedoraproject.org/pub/epel/testing/$releasever/Everything/$basearch/debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=testing-debug-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+
+[epel-testing-source]
+name=Extra Packages for Enterprise Linux $releasever - Testing - $basearch - Source
+#baseurl=https://download.fedoraproject.org/pub/epel/testing/$releasever/Everything/SRPMS
+metalink=https://mirrors.fedoraproject.org/metalink?repo=testing-source-epel$releasever&arch=$basearch&infra=$infra&content=$contentdir
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+gpgcheck=1
+[nginx]
+name=nginx_repo
+baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/
+gpgcheck=0
+enabled=1#
+# Certificate-Based Repositories
+# Managed by (rhsm) subscription-manager
+#
+# *** This file is auto-generated.  Changes made here will be over-written. ***
+# *** Use "subscription-manager repo-override --help" if you wish to make changes. ***
+#
+# If this file is empty and this system is subscribed consider
+# a "yum repolist" to refresh available repos
+#
+[epel]
+baseurl=https://dl.fedoraproject.org/pub/epel/7/
+gpgcheck=0[ httpd ]
+baseurl="https://archive.apache.org/dist/httpd/binaries/rpm/x86_64/"
+gpgcheck=0

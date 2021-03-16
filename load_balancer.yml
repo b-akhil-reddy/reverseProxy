@@ -1,0 +1,91 @@
+- hosts : all
+  tasks :
+          - name : "configuring yum for all the hosts to install httpd, php and haproxy"
+            copy :
+                    src : "yum.repo"
+                    dest : "/etc/yum.repos.d/reverseproxy.repo"
+ 
+- hosts : servers
+  vars_files :
+          - ./vars.yml
+  tasks :
+          - name : "installing httpd package for server"
+            package :
+                  name : "httpd"
+                  state : present
+          - name : "installing php package for server"
+            package :
+                  name : "php"
+                  state : present
+          - name : "removing the index.html file on webserver"
+            file :
+                  path : "/var/www/html/index.html"
+                  state : absent
+          - name : "copying the php file to the webserver"
+            copy :
+                  src : "./index.php"
+                  dest : "/var/www/html/index.php"
+          - name : "copying the httpd configuration file for the server"
+            template :
+                  src : "./httpd.conf"
+                  dest : "/etc/httpd/conf/httpd.conf"
+            notify : "restarting httpd service"
+          - name : "setting the selinux to permissive mode"
+            shell : "setenforce 0"
+          - name : "killing the service running the {{server_port}} port"
+            shell : "kill `netstat -tnlp | grep :{{server_port}} | awk '{print $7}' | awk -F/ '{print $1}'`"
+            ignore_errors : yes
+          - name : "starting the httpd service"
+            service :
+                  name : "httpd"
+                  state : started
+          - name : "restarting firewall"
+            service :
+                  name : "firewalld"
+                  state : restarted
+          - name : "changing settings for firewall"
+            firewalld :
+                  port : "{{server_port}}/tcp"
+                  state : enabled
+                  immediate : yes
+  handlers :
+          - name : "restarting httpd service"
+            service :
+                  name : "httpd"
+                  state : restarted
+- hosts : proxy
+  vars_files :
+          - ./vars.yml
+  tasks :
+          - name : "installing haproxy on proxy server"
+            package :
+                  name : "haproxy"
+                  state : "present"
+          - name : "copying the haproxy configuration file to proxy server"
+            template :
+                  src : "./haproxy.cfg"
+                  dest : "/etc/haproxy/haproxy.cfg"
+            notify : "restarting haproxy service"
+          - name : "setting selinux to permissive mode"
+            shell : "setenforce 0"
+          - name : "restarting firewall"
+            service :
+                  name : "firewalld"
+                  state : restarted
+          - name : "killing the service running on {{proxy_port}} port"
+            shell : "kill `netstat -tnlp | grep :{{proxy_port}} | awk '{print $7}' | awk -F/ '{print $1}'`"
+            ignore_errors : yes
+          - name : "starting haproxy service"
+            service :
+                  name : "haproxy"
+                  state : started
+          - name : "changing firewall settings"
+            firewalld :
+                  port : "{{proxy_port}}/tcp"
+                  state : enabled
+                  immediate : yes
+  handlers :
+          - name : "restarting haproxy service"
+            service :
+                  name : "haproxy"
+                  state : restarted
