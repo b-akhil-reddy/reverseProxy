@@ -23,7 +23,7 @@ as I have mentioned inventory file path in the ansible.cfg file as ./inventory/h
 The group names for the hosts are used to configure the hosts and also we use the groups and get the server ip addresses and use them in haproxy.cfg file in the above file under servers we need to give the ip addresses and passwords of the web servers and under proxy we need to give the ip addresses and passwords of the reverse proxy server
 
 ## Common Task which will configure the yum in both server and proxy server :
-To use the httpd, haproxy and php softwares firstly we need to install them, as I am using a RedHat operating system it needs yum to be configured to install httpd or php or any software, as I am using a configuration file that can install most of the softwares, here is the configuration file for the most of the softwares I am using that for the repositories of softwares
+To use the httpd, haproxy and php softwares firstly we need to install them, as I am using a RedHat operating system it needs yum to be configured to install httpd or php or any software, as I am using a configuration file that can install most of the softwares, [here is the yum repo for most of the softwares](./yum.repo) I am using that for the repositories of softwares
 
 In the configuration file the baseurl is where the software is present and gpgcheck is kept 0 as we don't want key checking during installation now after configuring the yum we need to install the packages httpd and php
 
@@ -69,7 +69,7 @@ print `/usr/sbin/ifconfig`;
 </pre>
 ```
 
-After copying the content we need to configure the webserver using the configuration file here I have used the the variables stored in the vars.yml file to know on which the webserver must be launched. In the httpd configuration file I have used the server_port variable to launch the web server. The complete httpd.conf file can be found here
+After copying the content we need to configure the webserver using the configuration file here I have used the the variables stored in the vars.yml file to know on which the webserver must be launched. In the httpd configuration file I have used the server_port variable to launch the web server. [The complete httpd.conf file can be found here](./httpd.conf)
 
 To copy the httpd configuration file I have used the following
 ```yaml
@@ -129,7 +129,7 @@ We need to configuring the haproxy using the configuration file I have used the 
                   dest : "/etc/haproxy/haproxy.cfg"
             notify : "restarting haproxy service"
 ```
-In the haproxy.cfg file I have used jinja templating to dynamically add the hosts of the webserver for the proxy. I have used the following for adding the webservers. The complete haproxy.cfg file can be found here
+In the haproxy.cfg file I have used jinja templating to dynamically add the hosts of the webserver for the proxy. I have used the following for adding the webservers. [The complete haproxy.cfg file can be found here](./haproxy.cfg)
 ```cfg
 {% for i in groups['servers'] %}
 
